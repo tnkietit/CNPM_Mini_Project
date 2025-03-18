@@ -1,0 +1,57 @@
+.chat-controls {
+  position: absolute;
+  bottom: 90px; /* Khi đóng sidebar, nằm phía trên box chat */
+  left: 260px;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+}
+
+.chat-controls.open {
+  bottom: 45px; /* Khi mở sidebar, nằm ngang hàng với box chat */
+  left: 320px;
+}
+
+.subject-dropdown {
+  background: #1e293b;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 12px;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+
+  /* Giữ kích thước cố định */
+  width: 160px;
+  margin-right: 10px;
+
+  /* Thử hiển thị dấu “...” khi quá dài */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+.subject-dropdown:hover {
+  background: #374151;
+}
+
+.message.user {
+  align-self: flex-end;
+  background-color: #3b82f6;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 70%;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 80px; /* Chừa 80px bên dưới để không bị che */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+

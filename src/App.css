@@ -1,0 +1,9 @@
+.app {
+    display: flex;
+    height: 100vh;
+    background-color: #111827; /* Thay đổi giá trị màu ở đây */
+  }
+  
+  body {
+    background-color: #111827 ;/* Thay đổi giá trị màu ở đây */
+  }
