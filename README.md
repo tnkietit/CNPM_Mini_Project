@@ -12,5 +12,14 @@ Currently, two official plugins are available:
 If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
 
-How to run?
-=> npm run dev
+**How to run?**
+
+Đầu tiên hãy cd tới folder chứa code 
+VD code trong folder D:\VSCode\mynewfolder> 
+=> cd D:\VSCode\mynewfolder> 
+Tiếp theo cài đặt package npm
+npm install
+Để chạy chương trình nhập lệnh: 
+npm run dev
+
+Cổng local mặc định:  http://localhost:5173/
