@@ -14,12 +14,12 @@ If you are developing a production application, we recommend using TypeScript an
 
 **How to run?**
 
-Đầu tiên hãy cd tới folder chứa code 
+Đầu tiên hãy đi tới folder chứa code 
 VD code trong folder D:\VSCode\mynewfolder> 
 => cd D:\VSCode\mynewfolder> 
-Tiếp theo cài đặt package npm
-npm install
+Tiếp theo cài đặt package npm:
+ "npm install"
 Để chạy chương trình nhập lệnh: 
-npm run dev
+"npm run dev"
 
 Cổng local mặc định:  http://localhost:5173/
