@@ -10,7 +10,7 @@ function Sidebar({ isOpen, toggleSidebar, openFeedback }) {
         {isOpen ? <FaTimes /> : <FaBars />}
       </button>
 
-      {/* Phần nội dung sidebar luôn render, nhưng sẽ có hiệu ứng trượt ra khi mở */}
+      {/* Phần nội dung sidebar với hiệu ứng trượt khi mở */}
       <div className={`sidebar ${isOpen ? "open" : "closed"}`}>
         <div className="menu-icons-container">
           {/* Các icon tìm kiếm và feedback */}
@@ -23,11 +23,12 @@ function Sidebar({ isOpen, toggleSidebar, openFeedback }) {
             </button>
           </div>
         </div>
+
         <div className="sidebar-content">
-          {/* Nếu bạn muốn ẩn hoàn toàn các nút này khi sidebar đóng, 
-              bạn có thể giữ chúng luôn render trong sidebar-content hoặc ẩn bằng CSS */}
           <button className="sidebar-item">Khám Phá GEA</button>
-          <button className="sidebar-item">Đoạn Chat Mới</button>
+          <button className="sidebar-item chat-new">Đoạn Chat Mới</button>
+          {/* Nếu muốn dùng pseudo-element cho hiệu ứng line, loại bỏ hr dưới đây */}
+          {/* <hr className="sidebar-separator" /> */}
         </div>
       </div>
     </div>

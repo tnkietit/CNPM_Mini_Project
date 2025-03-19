@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Chatbox from "../components/Chatbox";
 import FeedbackForm from "../components/FeedbackForm";
+import UserMenu from "../components/UserMenu"; // <-- Thêm UserMenu vào
 import "./MainInterface.css";
 
 function App() {
@@ -10,7 +11,12 @@ function App() {
   const [selectedSubject, setSelectedSubject] = useState("");
   const [messages, setMessages] = useState([]); // Lưu danh sách tin nhắn
 
-  const subjects = ["Triết học Mác – Lê-nin", "Kinh tế chính trị Mác – Lê-nint Lý", "Chủ nghĩa xã hội khoa học Học", "Lịch sử Đảng"];
+  const subjects = [
+    "Triết học Mác – Lê-nin",
+    "Kinh tế chính trị Mác – Lê-nint Lý",
+    "Chủ nghĩa xã hội khoa học Học",
+    "Lịch sử Đảng",
+  ];
 
   // Hàm xử lý gửi tin nhắn
   const handleSendMessage = (message) => {
@@ -18,9 +24,18 @@ function App() {
       setMessages([...messages, { text: message, sender: "user" }]);
       // Giả lập tin nhắn phản hồi từ bot
       setTimeout(() => {
-        setMessages((prev) => [...prev, { text: "Bot trả lời: " + message, sender: "bot" }]);
+        setMessages((prev) => [
+          ...prev,
+          { text: "Bot trả lời: " + message, sender: "bot" },
+        ]);
       }, 1000);
     }
+  };
+
+  // Hàm xử lý đăng xuất
+  const handleLogout = () => {
+    console.log("Đăng xuất");
+    // Thực hiện logic đăng xuất (xóa token, xóa localStorage, v.v.)
   };
 
   return (
@@ -30,9 +45,22 @@ function App() {
         toggleSidebar={() => setSidebarOpen(!isSidebarOpen)}
         openFeedback={() => setFeedbackOpen(true)}
       />
+
+      {/* Vùng nội dung chính */}
       <div className={`main ${isSidebarOpen ? "sidebar-open" : "sidebar-closed"}`}>
-        <Chatbox isSidebarOpen={isSidebarOpen} messages={messages} onSendMessage={handleSendMessage} />
-        
+        {/* Đặt UserMenu ở góc trên bên phải */}
+        <div className="user-menu-wrapper">
+          <UserMenu onLogout={handleLogout} />
+        </div>
+
+        {/* Chatbox */}
+        <Chatbox
+          isSidebarOpen={isSidebarOpen}
+          messages={messages}
+          onSendMessage={handleSendMessage}
+        />
+
+        {/* Dropdown chọn môn học */}
         <div className={`chat-controls ${isSidebarOpen ? "open" : ""}`}>
           <select
             className="subject-dropdown"
@@ -41,11 +69,14 @@ function App() {
           >
             <option value="">Danh sách môn học</option>
             {subjects.map((subject, index) => (
-              <option key={index} value={subject}>{subject}</option>
+              <option key={index} value={subject}>
+                {subject}
+              </option>
             ))}
           </select>
         </div>
       </div>
+
       {isFeedbackOpen && <FeedbackForm closeFeedback={() => setFeedbackOpen(false)} />}
     </div>
   );

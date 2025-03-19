@@ -14,8 +14,9 @@
   background: none;
   border: none;
   color: white;
-  font-size: 15px;
   cursor: pointer;
+  padding: 10px;
+  font-size: 20px; /* Kích thước icon toggle */
   z-index: 200;
 }
 
@@ -25,13 +26,12 @@
   top: 0;
   left: 0;
   height: 100vh;
-  width: 260px;             /* Chiều rộng khi mở */
-  background: #343541;      /* Màu nền của sidebar */
+  width: 260px;           /* Chiều rộng khi mở */
+  background: #343541;    /* Màu nền sidebar */
   padding: 20px 10px;
   color: #fff;
-  /* Hiệu ứng slide: khi đóng, chuyển sang bên trái hoàn toàn */
-  transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out;
+  transform: translateX(-100%); /* Ẩn hoàn toàn khi đóng */
+  transition: transform 0.5s ease-in-out;
 }
 
 /* Khi sidebar mở */
@@ -39,32 +39,32 @@
   transform: translateX(0);
 }
 
-/* Khi sidebar đang đóng, bạn có thể ẩn nội dung bên trong nếu cần */
+/* Ẩn nội dung bên trong khi sidebar đóng (nếu cần) */
 .sidebar.closed .menu-icons-container,
 .sidebar.closed .sidebar-content {
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
-/* Container chứa các icon trong phần đầu của sidebar */
+/* Container cho icon ở phần trên sidebar */
 .menu-icons-container {
   display: flex;
-  justify-content: space-between; /* Nút toggle bên trái, icon bên phải */
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
 
-/* Container cho các icon Search và Feedback */
+/* Gộp icon search và feedback */
 .icons-wrapper {
   display: flex;
   align-items: center;
-  gap: 5px; /* Khoảng cách giữa các icon */
-  justify-content: flex-end; /* Căn lề phải */
+  gap: 5px;
+  justify-content: flex-end;
   width: 100%;
 }
 
-/* Các nút icon (Search và Feedback) */
+/* Các nút icon (Search, Feedback) */
 .icon-btn {
   background: none;
   border: none;
@@ -73,7 +73,7 @@
   cursor: pointer;
 }
 
-/* Nội dung sidebar (danh sách các mục) */
+/* Nội dung sidebar (danh sách mục) */
 .sidebar-content {
   display: flex;
   flex-direction: column;
@@ -84,34 +84,53 @@
 .sidebar-item {
   background: #202123;
   border: none;
-  border-radius: 12px; /* Bo góc */
+  border-radius: 12px;
   padding: 12px;
   color: white;
   text-align: left;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 10px; /* Khoảng cách giữa icon và text */
-  transition: background 0.3s ease-in-out;
+  gap: 10px;
+  transition: background 0.5s ease-in-out;
 }
 
 .sidebar-item:hover {
   background: #3a3c44;
 }
 
-.icon-btn {
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  font-size: 20px;  /* Giảm kích thước icon search và feedback */
+/* Separator line */
+.sidebar-separator {
+  border: none; /* Xóa đường kẻ mặc định của <hr> */
+  border-top: 2px solid #ffffff; /* Đường kẻ màu trắng */
+  margin: 10px 0; /* Khoảng cách trên và dưới */
 }
 
-.menu-btn {
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  padding: 10px;
-  font-size: 20px;  /* Giảm kích thước icon mở sidebar */
+/* Style cho nút "Đoạn Chat Mới" có class chat-new */
+.chat-new {
+  position: relative;
+  padding-bottom: 10px; /* Khoảng cách bên dưới nút, tùy ý */
+}
+
+/* Pseudo-element cho hiệu ứng line */
+.chat-new::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;       /* Bắt đầu từ bên dưới */
+  left: 0;              /* Bắt đầu từ bên trái */
+  width: 100%;
+  height: 2px;
+  background: #ffffff;  /* Màu line */
+  
+  /* Ban đầu ẩn line (scaleX=0), co giãn từ bên trái */
+  transform: scaleX(0);
+  transform-origin: left;
+  
+  /* Hiệu ứng mượt khi thay đổi transform */
+  transition: transform 0.7s ease;
+}
+
+/* Khi sidebar mở, line giãn ra sang phải (scaleX=1) */
+.sidebar.open .chat-new::after {
+  transform: scaleX(1);
 }

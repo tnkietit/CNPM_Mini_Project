@@ -1,29 +1,31 @@
+/* Header.css */
 .header {
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #343541;
-    color: white;
-  }
-  
-  .icon-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    margin-right: 15px;
-  }
-  
-  .icons-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .icons-container.open {
-    opacity: 1;
-  }
-  
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #343541;
+  color: white;
+  position: relative;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+/* Các icon điều hướng bên trái */
+.icons-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.icons-container.open {
+  opacity: 1;
+}

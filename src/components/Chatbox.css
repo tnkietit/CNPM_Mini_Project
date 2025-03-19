@@ -21,7 +21,7 @@
   max-width: 1000px;
   
   /* Hiệu ứng mượt mà */
-  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out, left 0.5s ease-in-out;
 }
 
 /* Khi sidebar đóng => căn giữa toàn màn hình, rộng 90% */
