@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Chatbox from "../components/Chatbox";
 import FeedbackForm from "../components/FeedbackForm";
-import UserMenu from "../components/UserMenu"; // <-- Thêm UserMenu vào
+import UserMenu from "../components/UserMenu";
+import ListSubject from "../components/ListSubject";
 import "./MainInterface.css";
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isFeedbackOpen, setFeedbackOpen] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState("");
-  const [messages, setMessages] = useState([]); // Lưu danh sách tin nhắn
+  const [messages, setMessages] = useState([]);
 
   const subjects = [
     "Triết học Mác – Lê-nin",
@@ -18,11 +19,10 @@ function App() {
     "Lịch sử Đảng",
   ];
 
-  // Hàm xử lý gửi tin nhắn
+  // Xử lý gửi tin nhắn
   const handleSendMessage = (message) => {
     if (message.trim() !== "") {
       setMessages([...messages, { text: message, sender: "user" }]);
-      // Giả lập tin nhắn phản hồi từ bot
       setTimeout(() => {
         setMessages((prev) => [
           ...prev,
@@ -32,10 +32,10 @@ function App() {
     }
   };
 
-  // Hàm xử lý đăng xuất
+  // Xử lý đăng xuất
   const handleLogout = () => {
     console.log("Đăng xuất");
-    // Thực hiện logic đăng xuất (xóa token, xóa localStorage, v.v.)
+    // Thêm logic đăng xuất nếu cần
   };
 
   return (
@@ -48,7 +48,7 @@ function App() {
 
       {/* Vùng nội dung chính */}
       <div className={`main ${isSidebarOpen ? "sidebar-open" : "sidebar-closed"}`}>
-        {/* Đặt UserMenu ở góc trên bên phải */}
+        {/* UserMenu ở góc trên bên phải */}
         <div className="user-menu-wrapper">
           <UserMenu onLogout={handleLogout} />
         </div>
@@ -60,20 +60,13 @@ function App() {
           onSendMessage={handleSendMessage}
         />
 
-        {/* Dropdown chọn môn học */}
-        <div className={`chat-controls ${isSidebarOpen ? "open" : ""}`}>
-          <select
-            className="subject-dropdown"
-            value={selectedSubject}
-            onChange={(e) => setSelectedSubject(e.target.value)}
-          >
-            <option value="">Danh sách môn học</option>
-            {subjects.map((subject, index) => (
-              <option key={index} value={subject}>
-                {subject}
-              </option>
-            ))}
-          </select>
+        {/* Container cho dropdown (ListSubject) */}
+        <div className={`chat-controls ${isSidebarOpen ? "open" : "closed"}`}>
+          <ListSubject
+            selectedSubject={selectedSubject}
+            setSelectedSubject={setSelectedSubject}
+            subjects={subjects}
+          />
         </div>
       </div>
 
