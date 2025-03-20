@@ -17,11 +17,11 @@
   justify-content: space-between;
   
   /* Chiều cao cố định, rộng tùy trạng thái */
-  height: 80vh;
+  height: 90vh;
   max-width: 1000px;
   
   /* Hiệu ứng mượt mà */
-  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out, left 0.5s ease-in-out;
 }
 
 /* Khi sidebar đóng => căn giữa toàn màn hình, rộng 90% */
@@ -40,10 +40,11 @@
 .messages {
   flex: 1;
   overflow-y: auto;
-  margin-bottom: 10px; /* Để không bị đè bởi ô nhập tin */
+  padding-bottom: 50px;
+  margin-bottom: 50px; /* Để không bị đè bởi ô nhập tin */
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 /* Tin nhắn */
@@ -72,41 +73,72 @@
   display: none;
 }
 
+/* Xóa triệt để mọi border/box-shadow/ background ở <pre> và <code> */
 .messages pre,
 .messages code {
   background: transparent !important;
   border: none !important;
+  border-left: none !important;
   box-shadow: none !important;
   margin: 0 !important;
   padding: 0 !important;
+  color: #fff !important;
+}
+
+/* Ẩn pseudo-element nếu có */
+.messages pre::before,
+.messages pre::after,
+.messages code::before,
+.messages code::after {
+  display: none !important;
+  content: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 /* Thanh nhập tin nhắn */
 .chat-input {
   display: flex;
   gap: 10px;
+  height: 45px;
+  align-items: center; /* Căn giữa theo chiều dọc */  
 }
 
 .chat-input input {
   flex: 1;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   padding: 10px;
   background: #2c3042;
   color: #fff;
   outline: none;
+  height: 100%;
 }
 
 .chat-input button {
-  background: #3b82f6;
+  background:none;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px;
   padding: 10px 15px;
   cursor: pointer;
   font-size: 16px;
+  width: 50px;
+  height: 50px;
+
+  align-items: center;
 }
 
 .chat-input button:hover {
   background: #2563eb;
+}
+
+/* Ẩn thanh cuộn trên WebKit (Chrome, Edge, Safari) */
+.messages::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ẩn thanh cuộn trên Firefox */
+.messages {
+  scrollbar-width: none;
 }
