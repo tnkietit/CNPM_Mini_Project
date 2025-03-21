@@ -38,7 +38,7 @@
 /* Khi sidebar mở: di chuyển sang phải, hạ thấp nếu muốn */
 .chat-controls.open {
   left: calc(260px + 60px); /* 260px: rộng sidebar, + 20px: khoảng trống, có thể chỉnh */
-  bottom: 45px;             /* Hạ xuống nếu muốn */
+  bottom: 50px;             /* Hạ xuống nếu muốn */
   transform: none;          /* Bỏ translateX(-50%) */
   transition: all 0.5s ease-in-out;
 }
@@ -47,7 +47,7 @@
 .chat-controls.closed {
   position: absolute;
   bottom: 100px;       /* Tăng khoảng cách từ dưới để dropdown xuất hiện cao hơn */
-  left: 350px;          /* Căn giữa theo chiều ngang */
+  left: 370px;          /* Căn giữa theo chiều ngang */
   transform: translateX(-50%);
   display: flex;
   transition: all 0.5s ease-in-out;

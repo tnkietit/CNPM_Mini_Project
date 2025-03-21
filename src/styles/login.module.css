@@ -1,0 +1,57 @@
+.forgotPassword {
+  color: #9ca3af;
+  text-decoration: none;
+  font-size: 14px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  padding-bottom: 2px;
+}
+
+.forgotPassword::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: #8b5cf6;
+  transition: width 0.3s ease;
+}
+
+.forgotPassword:hover {
+  color: #8b5cf6;
+}
+
+.forgotPassword:hover::after {
+  width: 100%;
+}
+
+.registerLink {
+  color: #9ca3af;
+  text-decoration: none;
+  font-size: 14px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  padding-bottom: 2px;
+}
+
+.registerLink::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: #8b5cf6;
+  transition: width 0.3s ease;
+}
+
+.registerLink:hover {
+  color: #8b5cf6;
+}
+
+.registerLink:hover::after {
+  width: 100%;
+} 
