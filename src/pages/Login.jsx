@@ -107,7 +107,7 @@ const Login = () => {
           <h2>Chào mừng trở lại!</h2>
           <p>Đăng nhập để tiếp tục</p>
           <div className={styles.links}>
-            <a href="#">Đăng ký</a> | <a href="#">Quên mật khẩu?</a>
+            <a href="#">Đăng ký</a> | <a href="/forgot-password" className={styles.forgotPassword}>Quên mật khẩu?</a>
           </div>
         </div>
       </div>
