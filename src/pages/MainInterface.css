@@ -1,0 +1,76 @@
+.message.user {
+  align-self: flex-end;
+  background-color: #3b82f6;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 70%;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 80px; /* Chừa 80px bên dưới để không bị che */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Vị trí góc trên bên phải của UserMenu */
+.user-menu-wrapper {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  z-index: 999;
+}
+/* Container cho dropdown (và ô nhập chat nếu có) */
+/* Khi sidebar đóng: căn giữa màn hình */
+.chat-controls {
+  position: absolute;
+  bottom: 60px; /* Vị trí dọc khi sidebar đóng */
+  left: 50%;
+  transform: translateX(-50%); /* Căn giữa ngang */
+  display: flex;
+  align-items: center;
+  transition: all 0.5s ease-in-out;
+}
+
+/* Khi sidebar mở: di chuyển sang phải, hạ thấp nếu muốn */
+.chat-controls.open {
+  left: calc(260px + 60px); /* 260px: rộng sidebar, + 20px: khoảng trống, có thể chỉnh */
+  bottom: 45px;             /* Hạ xuống nếu muốn */
+  transform: none;          /* Bỏ translateX(-50%) */
+  transition: all 0.5s ease-in-out;
+}
+
+/* Khi sidebar đóng: dropdown căn giữa theo chiều ngang và xuất hiện cao hơn */
+.chat-controls.closed {
+  position: absolute;
+  bottom: 100px;       /* Tăng khoảng cách từ dưới để dropdown xuất hiện cao hơn */
+  left: 350px;          /* Căn giữa theo chiều ngang */
+  transform: translateX(-50%);
+  display: flex;
+  transition: all 0.5s ease-in-out;
+}
+
+/* Dropdown chọn môn học */
+.subject-dropdown {
+  background: #1e293b;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 12px;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  width: 160px;         /* Kích thước cố định */
+  margin-right: 10px;   /* Khoảng cách với ô nhập chat (nếu có) */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+.subject-dropdown:hover {
+  background: #374151;
+}
