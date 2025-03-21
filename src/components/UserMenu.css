@@ -1,5 +1,6 @@
 .user-menu-container {
     position: relative;
+    outline: none;
   }
   
   .user-icon-btn {

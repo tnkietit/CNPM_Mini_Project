@@ -107,6 +107,25 @@ body {
   border-radius: 8px;
   color: white;
   font-size: 15px;
+  -webkit-text-security: disc;
+}
+
+.input-container input:focus {
+  outline: none;
+}
+
+.input-container input[type="password"]::-ms-reveal,
+.input-container input[type="password"]::-ms-clear {
+  display: none;
+}
+
+.input-container input[type="password"]::-webkit-contacts-auto-fill-button,
+.input-container input[type="password"]::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
 }
 
 .input-container input::placeholder {
@@ -122,6 +141,11 @@ body {
   color: #6b7280;
   cursor: pointer;
   font-size: 16px;
+  z-index: 2;
+}
+
+.password-toggle:focus {
+  outline: none;
 }
 
 .remember-me {
@@ -179,6 +203,10 @@ body {
   font-size: 16px;
 }
 
+.reload-button:focus {
+  outline: none;
+}
+
 .login-button {
   width: 60%;
   padding: 12px;
@@ -192,6 +220,10 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.login-button:focus {
+  outline: none;
 }
 
 .login-button:hover {
