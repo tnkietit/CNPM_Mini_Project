@@ -16,7 +16,7 @@
   font-family: Arial, sans-serif;
 }
 
-body {
+.body {
   margin: 0;
   padding: 0;
   background-color: var(--primary-bg);
@@ -120,11 +120,6 @@ body {
   color: white;
   font-size: 15px;
 }
-
-.input-container input[type="password"] {
-  -webkit-text-security: disc;
-}
-
 .input-container input:focus {
   outline: none;
 }
@@ -331,6 +326,9 @@ body {
 .signup-link, .forgot-password-link {
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
+}
+a:hover{
+  border-bottom: 1px solid #ffffff;
 }
 
 /* Responsive styles */
