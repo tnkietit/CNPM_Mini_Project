@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FaUser, FaLock, FaEye, FaEyeSlash, FaSync } from "react-icons/fa";
 import styles from "./Login.module.css";
 import logo from "/src/img/Logoz.png";
+import DynamicNotification from "../components/DynamicNotification";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -10,6 +11,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [captcha, setCaptcha] = useState("");
   const [captchaSrc, setCaptchaSrc] = useState("https://miro.medium.com/v2/resize:fit:640/format:webp/1*MHqIWdansPvRMEmUK2KNPw.png");
+  const [showNotification, setShowNotification] = useState(false);
   
   const navigate = useNavigate();
   
@@ -23,14 +25,17 @@ const Login = () => {
     setCaptchaSrc(`${captchaSrc}?rand=${Math.random()}`);
   };
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (username.trim() && password.trim() && captcha.trim()) {
-      // Thực hiện xác thực đăng nhập ở đây
-      console.log("Login attempt:", { username, password, captcha });
-      // Giả lập đăng nhập thành công
-      localStorage.setItem("isLoggedIn", "true");
-      navigate("/");
+      // Hiển thị thông báo thành công
+      setShowNotification(true);
+      
+      // Đợi 1.5s rồi chuyển trang
+      setTimeout(() => {
+        localStorage.setItem("isLoggedIn", "true");
+        navigate("/");
+      }, 1500);
     }
   };
   
@@ -140,6 +145,12 @@ const Login = () => {
           </div>
         </div>
       </div>
+
+      <DynamicNotification
+        show={showNotification}
+        message="Đăng nhập thành công!"
+        onClose={() => setShowNotification(false)}
+      />
     </div>
   );
 };

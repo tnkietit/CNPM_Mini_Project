@@ -43,14 +43,11 @@ body {
   background-color: #242b3d;
   border-radius: 20px;
   overflow: hidden;
-  width: 90%;
-  max-width: 900px;
-  margin: auto;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  min-height: 500px;
+  width: 1000px;
+  height: 600px;
+  position: relative;
 }
 
-/* Left section - Login form */
 .login-form-section {
   flex: 1;
   padding: 40px;
@@ -60,6 +57,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .login-title {
@@ -68,6 +66,9 @@ body {
   font-weight: 600;
   margin-bottom: 30px;
   text-align: center;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+  animation-delay: 0.4s;
 }
 
 .login-form {
@@ -77,6 +78,16 @@ body {
 
 .form-group {
   margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.form-group:nth-child(1) {
+  animation-delay: 0.6s;
+}
+
+.form-group:nth-child(2) {
+  animation-delay: 0.8s;
 }
 
 .input-label {
@@ -97,16 +108,20 @@ body {
   left: 15px;
   color: #6b7280;
   font-size: 16px;
+  z-index: 1;
 }
 
 .input-container input {
   width: 100%;
-  padding: 14px 40px;
+  padding: 14px 14px 14px 40px;
   background-color: rgba(47, 54, 73, 0.5);
   border: none;
   border-radius: 8px;
   color: white;
   font-size: 15px;
+}
+
+.input-container input[type="password"] {
   -webkit-text-security: disc;
 }
 
@@ -155,6 +170,9 @@ body {
   margin: 15px 0;
   color: white;
   font-size: 15px;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+  animation-delay: 1.2s;
 }
 
 .remember-me input[type="checkbox"] {
@@ -164,6 +182,9 @@ body {
 
 .captcha-group {
   margin: 20px 0;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+  animation-delay: 1s;
 }
 
 .captcha-row {
@@ -220,6 +241,9 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+  animation-delay: 1.4s;
 }
 
 .login-button:focus {
@@ -244,6 +268,7 @@ body {
   position: relative;
   border-top-left-radius: 100px;
   border-bottom-left-radius: 100px;
+  animation: slideInFromRight 0.8s ease-out forwards;
 }
 
 .welcome-content {
@@ -259,6 +284,9 @@ body {
   width: 180px;
   height: auto;
   margin-bottom: 10px;
+  animation: fadeInDelay 0.6s ease-out forwards;
+  animation-delay: 0.4s;
+  opacity: 0;
 }
 
 .welcome-title {
@@ -266,12 +294,17 @@ body {
   white-space: nowrap;
   margin-bottom: 10px;
   font-weight: 600;
+  animation: fadeInDelay 0.6s ease-out forwards;
+  animation-delay: 0.6s;
+  opacity: 0;
 }
 
 .welcome-subtitle {
   font-size: 18px;
   margin-bottom: 20px;
-  opacity: 0.9;
+  opacity: 0;
+  animation: fadeInDelay 0.6s ease-out forwards;
+  animation-delay: 0.8s;
 }
 
 .welcome-links {
@@ -279,6 +312,9 @@ body {
   flex-direction: column;
   gap: 10px;
   font-size: 16px;
+  opacity: 0;
+  animation: fadeInDelay 0.6s ease-out forwards;
+  animation-delay: 1s;
 }
 
 .welcome-links a {
@@ -336,5 +372,49 @@ body {
   .welcome-links {
     font-size: 15px;
     gap: 10px;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInDelay {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -1,0 +1,160 @@
+.notification-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-150%);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  min-width: 300px;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.notification-container.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.notification-container.success {
+  animation: expandIsland 0.7s ease-out forwards;
+}
+
+.notification-icon {
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
+.notification-icon.loading {
+  color: #60a5fa;
+}
+
+.notification-icon.success {
+  color: #4ade80;
+}
+
+.spinner {
+  position: absolute;
+  animation: spin 1.3s ease-in-out infinite;
+  opacity: 1;
+  transform-origin: center;
+}
+
+.success-icon {
+  position: absolute;
+  opacity: 0;
+  transform: scale(0) rotate(-180deg);
+  transform-origin: center;
+}
+
+.notification-icon.success .spinner {
+  animation: spinAndFadeOut 0.5s ease-out forwards;
+}
+
+.notification-icon.success .success-icon {
+  animation: successIconIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: 0.3s;
+}
+
+.notification-content {
+  flex: 1;
+}
+
+.notification-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  transition: all 0.3s ease;
+}
+
+.notification-message {
+  font-size: 14px;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.notification-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: #4ade80;
+  border-bottom-left-radius: 20px;
+  animation: progress 3s linear forwards;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinAndFadeOut {
+  0% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes successIconIn {
+  0% {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  40% {
+    transform: scale(1.4) rotate(10deg);
+    opacity: 0.7;
+  }
+  60% {
+    transform: scale(1.2) rotate(5deg);
+    opacity: 0.8;
+  }
+  80% {
+    transform: scale(1.1) rotate(0deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+@keyframes expandIsland {
+  0% {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) translateY(0) scale(1.05);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+} 
