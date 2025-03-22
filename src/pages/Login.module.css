@@ -261,8 +261,8 @@
   text-align: center;
   color: white;
   position: relative;
-  border-top-left-radius: 100px;
-  border-bottom-left-radius: 100px;
+  border-top-left-radius: 150px;
+  border-bottom-left-radius: 150px;
   animation: slideInFromRight 0.8s ease-out forwards;
 }
 

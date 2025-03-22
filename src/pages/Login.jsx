@@ -1,19 +1,29 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { FaUser, FaLock, FaEye, FaEyeSlash, FaSync } from "react-icons/fa";
 import styles from "./Login.module.css";
 import logo from "/src/img/Logoz.png";
 import DynamicNotification from "../components/DynamicNotification";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
   const [showPassword, setShowPassword] = useState(false);
   const [captcha, setCaptcha] = useState("");
   const [captchaSrc, setCaptchaSrc] = useState("https://miro.medium.com/v2/resize:fit:640/format:webp/1*MHqIWdansPvRMEmUK2KNPw.png");
   const [showNotification, setShowNotification] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   
-  const navigate = useNavigate();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
   
   const togglePasswordVisibility = (e) => {
     e.preventDefault();
@@ -27,16 +37,31 @@ const Login = () => {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (username.trim() && password.trim() && captcha.trim()) {
-      // Hiển thị thông báo thành công
-      setShowNotification(true);
+    if (isLoading) return;
+
+    try {
+      setIsLoading(true);
       
-      // Đợi 1.5s rồi chuyển trang
-      setTimeout(() => {
-        localStorage.setItem("isLoggedIn", "true");
-        navigate("/");
-      }, 1500);
+      // Kiểm tra đăng nhập
+      if (formData.username && formData.password && captcha) {
+        // Lưu token và hiển thị thông báo
+        localStorage.setItem('isLoggedIn', 'true');
+        setShowNotification(true);
+        
+        // Chuyển hướng sau 1.5s
+        setTimeout(() => {
+          navigate('/main');
+        }, 1500);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+    } finally {
+      setIsLoading(false);
     }
+  };
+  
+  const handleNotificationClose = () => {
+    setShowNotification(false);
   };
   
   return (
@@ -55,9 +80,11 @@ const Login = () => {
                 <input
                   type="text"
                   placeholder="Nhập username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
                   required
+                  disabled={isLoading}
                 />
               </div>
             </div>
@@ -71,14 +98,17 @@ const Login = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Nhập password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
                   required
+                  disabled={isLoading}
                 />
                 <button 
                   type="button"
                   className={styles["password-toggle"]} 
                   onClick={togglePasswordVisibility}
+                  disabled={isLoading}
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>
@@ -86,7 +116,7 @@ const Login = () => {
             </div>
             
             <div className={styles["remember-me"]}>
-              <input type="checkbox" id="remember" />
+              <input type="checkbox" id="remember" disabled={isLoading} />
               <label htmlFor="remember">Ghi nhớ đăng nhập</label>
             </div>
             
@@ -100,6 +130,7 @@ const Login = () => {
                   onChange={(e) => setCaptcha(e.target.value)}
                   className={styles["captcha-input"]}
                   required
+                  disabled={isLoading}
                 />
                 <div className={styles["captcha-image-container"]}>
                   <img src={captchaSrc} alt="captcha" className={styles["captcha-img"]} />
@@ -107,6 +138,7 @@ const Login = () => {
                     type="button"
                     className={styles["reload-button"]} 
                     onClick={reloadCaptcha}
+                    disabled={isLoading}
                   >
                     <FaSync />
                   </button>
@@ -114,8 +146,12 @@ const Login = () => {
               </div>
             </div>
             
-            <button type="submit" className={styles["login-button"]}>
-              Đăng nhập
+            <button 
+              type="submit" 
+              className={styles["login-button"]}
+              disabled={isLoading}
+            >
+              {isLoading ? 'Đang xử lý...' : 'Đăng nhập'}
             </button>
           </form>
         </div>
@@ -132,9 +168,9 @@ const Login = () => {
             <div className={styles["welcome-links"]}>
               <p>
                 Chưa có tài khoản?{" "}
-                <a href="/register" className={styles["signup-link"]}>
+                <Link to="/register" className={styles["signup-link"]}>
                   Đăng ký
-                </a>
+                </Link>
               </p>
               <p>
                 <a href="/forgot-password" className={styles["forgot-password-link"]}>
@@ -148,8 +184,8 @@ const Login = () => {
 
       <DynamicNotification
         show={showNotification}
-        message="Đăng nhập thành công!"
-        onClose={() => setShowNotification(false)}
+        message="Chào mừng bạn đã quay trở lại!"
+        onClose={handleNotificationClose}
       />
     </div>
   );
