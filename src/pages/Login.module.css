@@ -107,7 +107,6 @@ body {
   border-radius: 8px;
   color: white;
   font-size: 15px;
-  -webkit-text-security: disc;
 }
 
 .input-container input:focus {
@@ -295,6 +294,9 @@ body {
 .signup-link, .forgot-password-link {
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
+}
+a:hover{
+  border-bottom: 1px solid #ffffff;
 }
 
 /* Responsive styles */
