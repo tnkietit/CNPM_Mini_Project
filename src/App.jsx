@@ -3,15 +3,14 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './pages/Login';
 import Register from './pages/Register';
 import MainInterface from './pages/MainInterface';
+import ForgotPassword from './pages/Forgotpassword';
 
 // Protected Route component
 const ProtectedRoute = ({ children }) => {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-  
   if (!isLoggedIn) {
     return <Navigate to="/login" replace />;
   }
-
   return children;
 };
 
@@ -22,6 +21,7 @@ function App() {
         {/* Public routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         
         {/* Protected routes */}
         <Route
